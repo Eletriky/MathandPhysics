@@ -67,9 +67,18 @@ public class DrawableObject
         // Rotate
 
         // Scale
+        translatedLine.start.x *= Scale.x;
+        translatedLine.start.y *= Scale.y;
+        translatedLine.start.z *= Scale.z;
 
+        translatedLine.end.x *= Scale.x;
+        translatedLine.end.y *= Scale.y;
+        translatedLine.end.z *= Scale.z;
         // Position
+        translatedLine.start += Position;
+        translatedLine.end += Position;
 
+        
 
         return translatedLine;
     }
