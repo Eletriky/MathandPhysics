@@ -5,8 +5,11 @@ public class Lab03Grid : DrawableGrid
     public override void SetupScenes()
     {
         int sceneIndex; 
-        DrawableArrow newArrow; 
+        DrawableArrow newArrow;
+        DrawableObject newGraph;
 
+        sceneIndex = AddScene("Diamond");
+        newGraph = new DrawableDiamond();
 
         AddScene("Empty Scene, Use Tab To Switch Scenes");
 
