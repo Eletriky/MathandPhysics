@@ -10,6 +10,7 @@ public class Lab03Grid : DrawableGrid
 
         sceneIndex = AddScene("Diamond");
         newGraph = new DrawableDiamond();
+        AddObjectToScene(sceneIndex, newGraph);
 
         AddScene("Empty Scene, Use Tab To Switch Scenes");
 
