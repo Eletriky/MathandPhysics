@@ -8,5 +8,8 @@ public class DrawableDiamond : DrawableObject
         AddLineToObject(new Vector3(0, 1, 0), new Vector3(-1, 0, 0), Color.magenta);
         AddLineToObject(new Vector3(-1, 0, 0), new Vector3(0, -1, 0), Color.magenta);
         AddLineToObject(new Vector3(0, -1, 0), new Vector3(1, 0, 0), Color.magenta);
+
     }
+
 }
+

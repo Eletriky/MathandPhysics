@@ -18,7 +18,26 @@ public class DrawingObject
         Lines = new List<Line>();
         Initalize();
     }
+    public virtual void Tick()
+    {
 
+    }
+    public float GetRotationinDegrees()
+    {
+
+    }
+    public void SetRotationinDegrees(float degrees)
+    {
+
+    }
+    public static float V3ToAngle(Vector3 startPoint, Vector3 endPoint)
+    {
+
+    }
+    public static float V3ToAngleinDegrees(Vector3 startPoint, Vector3 endPoint)
+    {
+
+    }
     public virtual void Initalize()
     {
 
