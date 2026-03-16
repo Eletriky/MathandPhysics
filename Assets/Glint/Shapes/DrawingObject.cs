@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Drawing.Glint;
+﻿using Drawing.Glint;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
+using UnityEngine;
 
 [Serializable]
 public class DrawingObject
@@ -22,23 +23,13 @@ public class DrawingObject
     {
 
     }
-    public float GetRotationinDegrees()
-    {
-        return Roation * Mathf.Rad2Deg;
-    }
-    public void SetRotationinDegrees(float degrees)
-    {
-        Roation = degrees * Mathf.Deg2Rad;
-    }
-    public static float V3ToAngle(Vector3 startPoint, Vector3 endPoint)
-    {
-        Vector3 dir = endPoint - startPoint;
-        return Mathf.Atan2(dir.y, dir.x);
-    }
+
+
     public static float V3ToAngleinDegrees(Vector3 startPoint, Vector3 endPoint)
     {
         return V3ToAngle(startPoint, endPoint) * Mathf.Rad2Deg;
     }
+
     public virtual void Initalize()
     {
 

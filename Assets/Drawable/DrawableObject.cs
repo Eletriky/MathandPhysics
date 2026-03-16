@@ -32,12 +32,29 @@ public class DrawableObject
     {
         LineList.Add(line);
     }
-
+    public static float V3ToAngle(Vector3 startPoint, Vector3 endPoint)
+    {
+        Vector3 lineVector = endPoint - startPoint;
+        float radians = Mathf.Atan2(lineVector.y, lineVector.x);
+        return (radians - Mathf.Rad2Deg);
+    }
     public void AddLineToObject(Vector3 start, Vector3 end, Color color)
     {
         LineList.Add(new Line(start, end, color));
     }
+    public static float LineToAngle(Line line)
+    {
+        return V3ToAngle(line.start, line.end);
+    }
+    public static Vector3 RotatePoint(Vector3 center, Vector3 pointIN, float angleInRadians)
+    {
+        Vector3 PointAtZero = pointIN - center;
+        Vector3 result = Vector3.zero;
 
+        result.x = PointAtZero.x * Mathf.Cos(angleInRadians) - PointAtZero.y * Mathf.Sin(angleInRadians);
+        result.y = PointAtZero.x * Mathf.Sin(angleInRadians) + PointAtZero.y * Mathf.Cos(angleInRadians);
+        return (result + center);
+    }
 
     /// <summary>
     /// Draws the Drawing Object Instance
