@@ -190,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 368091527}
   - component: {fileID: 368091528}
+  - component: {fileID: 368091529}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368091525}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4dbdc3d01b368146946bbf14c071886, type: 3}
   m_Name: 
@@ -236,7 +237,44 @@ MonoBehaviour:
   isDrawingTheGrid: 1
   isDrawingOrigin: 1
   isDrawingAxis: 1
+  isDrawingAxisOnly: 0
   isDrawingDivisions: 0
+  isTickAllScenes: 0
+  isTickingScenes: 1
+  isTickingGrid: 1
+  MousePosition: {x: 0, y: 0, z: 0}
+  SceneIndex: 0
+  SceneListName: []
+--- !u!114 &368091529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368091525}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4b43fc4625dd341a0e94e1260d9966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenSize: {x: 0, y: 0, z: 0}
+  origin: {x: 0, y: 0, z: 0}
+  gridSize: 10
+  minGridSize: 2
+  originSize: 0.6
+  axisColor: {r: 1, g: 1, b: 1, a: 1}
+  lineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  divisionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  isDrawingObjects: 1
+  isDrawingTheGrid: 1
+  isDrawingOrigin: 1
+  isDrawingAxis: 1
+  isDrawingAxisOnly: 0
+  isDrawingDivisions: 1
+  isTickAllScenes: 0
+  isTickingScenes: 1
+  isTickingGrid: 1
+  MousePosition: {x: 0, y: 0, z: 0}
   SceneIndex: 0
   SceneListName: []
 --- !u!1 &796140856
@@ -425,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac91bf2fa07cf94b8dd998ceb9d7edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 368091528}
+  grid: {fileID: 1574157646}
   WhiteTextField: {fileID: 796140858}
   BlackTextField: {fileID: 1162124683}
 --- !u!1 &1043325343
@@ -771,6 +809,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162124681}
   m_CullTransparentMesh: 1
+--- !u!1 &1574157643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574157645}
+  - component: {fileID: 1574157646}
+  m_Layer: 0
+  m_Name: SceneManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1574157645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574157643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1574157646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574157643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad936dcecb8cf9841b601d7480b16a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenSize: {x: 0, y: 0, z: 0}
+  origin: {x: 0, y: 0, z: 0}
+  gridSize: 10
+  minGridSize: 2
+  originSize: 0.6
+  axisColor: {r: 1, g: 1, b: 1, a: 1}
+  lineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  divisionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  isDrawingObjects: 1
+  isDrawingTheGrid: 1
+  isDrawingOrigin: 1
+  isDrawingAxis: 1
+  isDrawingAxisOnly: 0
+  isDrawingDivisions: 1
+  isTickAllScenes: 0
+  isTickingScenes: 1
+  isTickingGrid: 1
+  MousePosition: {x: 0, y: 0, z: 0}
+  SceneIndex: 0
+  SceneListName: []
 --- !u!1 &2096673057
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,5 +958,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1043325347}
   - {fileID: 368091527}
+  - {fileID: 1574157645}
   - {fileID: 1110609459}
   - {fileID: 2096673060}

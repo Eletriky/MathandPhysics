@@ -93,8 +93,16 @@ public class DrawableObject : DrawingObject
         translatedLine.start += Position;
         translatedLine.end += Position;
 
-        
+
 
         return translatedLine;
+    }
+    public float GetRotationinDegrees()
+    {
+        return (Rotation * Mathf.Rad2Deg);
+    }
+    public void SetRotationinDegrees(float degrees)
+    {
+        Rotation = degrees = Mathf.Deg2Rad;
     }
 }

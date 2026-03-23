@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Lab04 : DrawableGrid
+public class Lab04_Grid : DrawableGrid
 {
     public override void SetupScenes()
     {
@@ -18,14 +18,18 @@ public class Lab04 : DrawableGrid
         AddObjectToScene(sceneIndex, newGraph);
         newGraph.Scale = (Vector3.one * 20);
 
-        sceneIndex = AddScene("Diamond scale 20 rotation 45");
+        sceneIndex = AddScene("Diamond scale 20, 10");
         newGraph = new DrawableDiamond();
         AddObjectToScene(sceneIndex, newGraph);
-        newGraph.Scale = (Vector3.one * 20);
+        newGraph.Scale = new Vector3(20, 10, 1);
+        
+
+        sceneIndex = AddScene("Diamond scale 20, 10. rotation 45");
+        newGraph = new DrawableDiamond();
+        newGraph.Scale = new Vector3(20, 10, 1);
         newGraph.Rotation = 45 * Mathf.Deg2Rad;
+        AddObjectToScene(sceneIndex, newGraph);
 
         AddScene("Empty Scene, Use Tab To Switch Scenes");
     }
-
-
 }

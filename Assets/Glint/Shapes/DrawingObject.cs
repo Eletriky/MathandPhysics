@@ -76,12 +76,5 @@ public class DrawingObject
         }
 
     }
-    public float GetRotationDegrees()
-    {
-        return (Rotation * Mathf.Rad2Deg);
-    }
-    public void SetRotationinDegrees(float degrees)
-    {
 
-    }
 }
