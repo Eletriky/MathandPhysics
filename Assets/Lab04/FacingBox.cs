@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FacingBox : DrawableObject
 {
+    
     public bool isMoving = true;
     public bool isFacingMouse = true; 
     public float MoveSpeed = 5f; 
@@ -29,8 +30,8 @@ public class FacingBox : DrawableObject
             // This works because they're in Screen Space 
             //Vector3 screenPosition = DrawableGrid.Instance.origin;
             Vector3 screenPosition = DrawableGrid.Instance.GridToScreen(Position);
-            Roation = V3ToAngle(screenPosition, DrawableGrid.Instance.MousePosition);
+            Rotation = V3ToAngle(screenPosition, DrawableGrid.Instance.MousePosition);
         }
     }
-
+    
 }

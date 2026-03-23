@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class DrawableObject
+public class DrawableObject : DrawingObject
 {
 
     public bool PerformDraw = true;
@@ -22,21 +22,19 @@ public class DrawableObject
         Initalize();
     }
 
+    public virtual void Tick()
+    {
+
+    }
     public virtual void Initalize()
     {
 
     }
-
     public void AddLineToObject(Line line)
     {
         LineList.Add(line);
     }
-    public static float V3ToAngle(Vector3 startPoint, Vector3 endPoint)
-    {
-        Vector3 lineVector = endPoint - startPoint;
-        float radians = Mathf.Atan2(lineVector.y, lineVector.x);
-        return (radians - Mathf.Rad2Deg);
-    }
+    
     public void AddLineToObject(Vector3 start, Vector3 end, Color color)
     {
         LineList.Add(new Line(start, end, color));
