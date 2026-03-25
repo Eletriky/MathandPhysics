@@ -7,6 +7,10 @@ public class Lab04_Grid : DrawableGrid
         int sceneIndex;
         DrawableObject newGraph;
 
+        sceneIndex = AddScene("FacingBox");
+        newGraph = new FacingBox();
+        AddObjectToScene(sceneIndex, newGraph);
+
         sceneIndex = AddScene("Diamond");
         newGraph = new DrawableDiamond();
         AddObjectToScene(sceneIndex, newGraph);
@@ -21,12 +25,28 @@ public class Lab04_Grid : DrawableGrid
         newGraph.Scale = new Vector3(20, 10, 1);
         AddObjectToScene(sceneIndex, newGraph);
 
-        sceneIndex = AddScene("Diamond scale 20, 10. rotation 45");
+        sceneIndex = AddScene("Rotating Diamond");
+        newGraph = new RotatingDiamond();
+        newGraph.Scale = new Vector3(20, 10, 1);
+        AddObjectToScene(sceneIndex, newGraph);
+
+
+        sceneIndex = AddScene("Diamond scale 20, 10, rotation 45");
         newGraph = new DrawableDiamond();
         newGraph.Scale = new Vector3(20, 10, 1);
         newGraph.Rotation = 45 * Mathf.Deg2Rad;
         AddObjectToScene(sceneIndex, newGraph);
 
+        sceneIndex = AddScene("Diamond scale 20, 10, rotation 90");
+        newGraph = new DrawableDiamond();
+        newGraph.Scale = new Vector3(20, 10, 1);
+        newGraph.Rotation = 90 * Mathf.Deg2Rad;
+        AddObjectToScene(sceneIndex, newGraph);
+
         AddScene("Empty Scene, Use Tab To Switch Scenes");
+    }
+    public override void Tick()
+    {
+        base.Tick();
     }
 }
