@@ -39,7 +39,7 @@ public class lab05Grid : DrawableGrid
         DrawingTools.DrawRectangle(box, Color.red);
         DrawingTools.DrawRectangle(boxOnGrid, Color.green, this);
 
-        circleRadiusLine.end = DrawingTools.CircleRadiusPoint(Vector3.zero, offset * 2, circleRadius);
+        circleRadiusLine.end = DrawingTools.CircleRadiusPoint(Vector3.zero, offset * 180, circleRadius);
         DrawLine(circleRadiusLine);
     }
 }

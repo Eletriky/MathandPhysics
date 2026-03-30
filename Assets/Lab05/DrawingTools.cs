@@ -39,8 +39,8 @@ public static class DrawingTools
 
         result += origin;
 
-        // stub code, replace this
-        return Vector3.zero;
+
+        return result; 
     }
 
     /// <summary>
