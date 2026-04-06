@@ -52,8 +52,14 @@ public static class DrawingTools
     /// <returns>point in Vector3</returns>
     public static Vector3 EllipseRadiusPoint(Vector3 origin, float angle, Vector3 axis)
     {
-        // stub code, replace this
-        return Vector3.zero;
+        Vector3 result = Vector3.zero;
+        result.x = Mathf.Cos(angle * Mathf.Deg2Rad) * axis;
+        result.y = Mathf.Sin(angle * Mathf.Deg2Rad) * axis;
+
+        result += origin;
+
+
+        return result; 
     }
 
     /// <summary>
@@ -65,7 +71,25 @@ public static class DrawingTools
     /// <param name="color">Color to draw, use Color.####</param>
     public static void DrawCircle(Vector3 position, float radius, int sides, Color color)
     {
+        int numberofSides = sides;
+        if (numberofSides < 3)
+        {
+            numberofSides = 12;
+        }
 
+        float degreeStep = 360 / numberofSides;
+        Vector3 Start = Vector3.zero;
+        Vector3 End = Vector3.zero;
+        Line newline;
+
+        for (int i = 0; i < numberofSides; i++)
+        {
+            Start = CircleRadiusPoint(position, (degreeStep * i), radius);
+            End = CircleRadiusPoint(position, (degreeStep * (i + 1)), radius);
+            newline = new Line(Start, End, color);
+
+            Glint.AddCommand(newline);
+        }
     }
 
     /// <summary>
@@ -77,25 +101,77 @@ public static class DrawingTools
     /// <param name="color">Color to draw, use Color.####</param>
     public static void DrawEllipse(Vector3 position, Vector2 axis, int sides, Color color)
     {
+        int numberofSides = sides;
+        if (numberofSides < 3)
+        {
+            numberofSides = 12;
+        }
 
+        float degreeStep = 360 / numberofSides;
+        Vector3 Start = Vector3.zero;
+        Vector3 End = Vector3.zero;
+        Line newline;
+
+        for (int i = 0; i < numberofSides; i++)
+        {
+            Start = EllipseRadiusPoint(position, (degreeStep * i), axis);
+            End = EllipseRadiusPoint(position, (degreeStep * (i + 1)), axis);
+            newline = new Line(Start, End, color);
+
+            Glint.AddCommand(newline);
+        }
     }
 
     public static DrawableObject CreateCircleObject(Vector3 position, float radius, int sides, Color color)
     {
         DrawableObject newCircle = new DrawableObject();
 
-        // The heavy lift of building an circle is in DrawCircle
-        // Reformat the code to use AddLineToObject(Vector3 start, Vector3 end, Color color)
+        int numberofSides = sides;
+        if (numberofSides < 3)
+        {
+            numberofSides = 12;
+        }
+
+        float degreeStep = 360 / numberofSides;
+        Vector3 Start = Vector3.zero;
+        Vector3 End = Vector3.zero;
+        Line newline;
+
+        for (int i = 0; i < numberofSides; i++)
+        {
+            Start = CircleRadiusPoint(position, (degreeStep * i), radius);
+            End = CircleRadiusPoint(position, (degreeStep * (i + 1)), radius);
+            newline = new Line(Start, End, color);
+
+            newCircle.AddLineToObject(Start, End, color);
+        }
 
         return newCircle;
     }
 
-    public static DrawableObject CreateEllipseObject(Vector3 position, float radius, int sides, Color color)
+    public static DrawableObject CreateEllipseObject(Vector3 position, Vector2 axis, int sides, Color color)
     {
         DrawableObject newEllipse = new DrawableObject();
 
-        // The heavy lift of building an ellipse is in DrawEllipse
-        // Reformat the code to use AddLineToObject(Vector3 start, Vector3 end, Color color)
+        int numberofSides = sides;
+        if (numberofSides < 3)
+        {
+            numberofSides = 12;
+        }
+
+        float degreeStep = 360 / numberofSides;
+        Vector3 Start = Vector3.zero;
+        Vector3 End = Vector3.zero;
+        Line newline;
+
+        for (int i = 0; i < numberofSides; i++)
+        {
+            Start = EllipseRadiusPoint(position, (degreeStep * i), axis);
+            End = EllipseRadiusPoint(position, (degreeStep * (i + 1)), axis);
+            newline = new Line(Start, End, color);
+
+            newEllipse.AddLineToObject(Start, End, color);
+        }
 
         return newEllipse;
     }
