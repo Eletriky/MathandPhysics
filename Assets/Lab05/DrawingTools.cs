@@ -53,8 +53,8 @@ public static class DrawingTools
     public static Vector3 EllipseRadiusPoint(Vector3 origin, float angle, Vector3 axis)
     {
         Vector3 result = Vector3.zero;
-        result.x = Mathf.Cos(angle * Mathf.Deg2Rad) * axis;
-        result.y = Mathf.Sin(angle * Mathf.Deg2Rad) * axis;
+        result.x = Mathf.Cos(angle * Mathf.Deg2Rad) * axis.x;
+        result.y = Mathf.Sin(angle * Mathf.Deg2Rad) * axis.y;
 
         result += origin;
 

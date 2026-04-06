@@ -292,7 +292,7 @@ MonoBehaviour:
   axisColor: {r: 1, g: 1, b: 1, a: 1}
   lineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   divisionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  isDrawingObjects: 0
+  isDrawingObjects: 1
   isDrawingTheGrid: 1
   isDrawingOrigin: 0
   isDrawingAxis: 0
