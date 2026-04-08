@@ -12,15 +12,27 @@ public static class DrawingTools
     /// <param name="grid"> if grid = null, info in Rect is in screen coordinates, else info is in grid space</param>
     public static void DrawRectangle(Rect box, Color color, DrawableGrid grid = null)
     {
+        Line top = new Line(new Vector2(box.X, box.Y + box.Height),new Vector2(box.X + box.Width, box.Y + box.Height),color);
+
+        Line left = new Line(new Vector2(box.X, box.Y),new Vector2(box.X, box.Y + box.Height),color);
+
+        Line right = new Line(new Vector2(box.X + box.Width, box.Y),new Vector2(box.X + box.Width, box.Y + box.Height),color);
+
         Line bottom = new Line(new Vector2(box.X, box.Y), new Vector2((box.X +box.Width), box.Y),color);
 
        if (grid == null)
         {
             Glint.AddCommand(bottom);
+            Glint.AddCommand(top);
+            Glint.AddCommand(left);
+            Glint.AddCommand(right);
         }
-       else
+        else
         {
             grid.DrawLine(bottom);
+            grid.DrawLine(top);
+            grid.DrawLine(left);
+            grid.DrawLine(right);
         }
     }
 
