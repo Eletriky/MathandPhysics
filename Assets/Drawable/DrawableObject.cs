@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 [Serializable]
-public class DrawableObject : DrawingObject
+public class DrawableObject
 {
 
     public bool PerformDraw = true;
 
     // Transform information 
     public Vector3 Position = Vector3.zero;
-    public float Rotation = 0;
+    public float Rotation = 0f;
     public Vector3 Scale = Vector3.one;
 
     public List<Line> LineList;
@@ -103,6 +102,17 @@ public class DrawableObject : DrawingObject
     }
     public void SetRotationinDegrees(float degrees)
     {
-        Rotation = degrees = Mathf.Deg2Rad;
+        Rotation = degrees * Mathf.Deg2Rad;
     }
+    public static float V3ToAngle(Vector3 startPoint, Vector3 endPoint)
+    {
+        Vector3 lineVector = endPoint - startPoint;
+        float radians = Mathf.Atan2(lineVector.y, lineVector.x);
+        return (radians - Mathf.Rad2Deg);
+    }
+    public static float V3ToAngleinDegrees(Vector3 startPoint, Vector3 endPoint)
+    {
+        return V3ToAngle(startPoint, endPoint) * Mathf.Rad2Deg;
+    }
+
 }

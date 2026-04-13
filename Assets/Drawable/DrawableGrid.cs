@@ -29,6 +29,7 @@ public class DrawableGrid : MonoBehaviour
     public int SceneIndex = 0;
     public List<List<DrawableObject>> SceneList;
     public List<string> SceneListName;
+    public Dictionary<DrawableObject, int> RemoveList;
     private void Awake()
     {
         // Lazy Singleton
@@ -39,12 +40,14 @@ public class DrawableGrid : MonoBehaviour
         screenSize = new Vector3(Screen.width, Screen.height);
         origin = new Vector3(Screen.width / 2, Screen.height / 2);
         //lineObjects = new List<DrawableObject>();
+        RemoveList = new Dictionary<DrawableObject, int>();
         SceneList = new List<List<DrawableObject>>();
         SceneListName = new List<string>();
         SetupScenes();
     }
     public virtual void SetupScenes()
     {
+
     }
     void Update()
     {
@@ -52,6 +55,7 @@ public class DrawableGrid : MonoBehaviour
         TickGrid();
         TickScenes();
         DrawGrid();
+        CleanUpScenes();
         DrawScene();
     }
     public void TickScenes()
@@ -84,6 +88,18 @@ public class DrawableGrid : MonoBehaviour
     public virtual void Tick()
     {
 
+    }
+    public virtual void CleanUpScenes()
+    {
+        if (RemoveList.Count == 0 )
+        {
+            return;
+        }
+        foreach (var item in RemoveList)
+        {
+            SceneList[item.Value].Remove(item.Key);
+        }
+        RemoveList.Clear();
     }
     public void SelectNextScene()
     {
@@ -183,11 +199,21 @@ public class DrawableGrid : MonoBehaviour
             return;
         }
         MousePosition = mouse.position.ReadValue();
+        ProcessInput(kb, mouse);
+
+
+
+    }
+
+    public virtual void ProcessInput(Keyboard kb, Mouse mouse)
+    {
+
         // Place the Origin
         if (mouse.middleButton.isPressed)
         {
             origin = MousePosition;
         }
+
         // Check Mouse Scroll Wheel and update Grid Size
         bool ControlKey = kb.ctrlKey.isPressed;
         Vector2 scroll = mouse.scroll.ReadValue();
@@ -242,6 +268,8 @@ public class DrawableGrid : MonoBehaviour
             SelectNextScene();
         }
     }
+
+
     /// <summary>
     /// Draws the grid
     /// </summary>
