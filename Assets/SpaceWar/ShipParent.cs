@@ -7,8 +7,8 @@ public class ShipParent : MovingObject
 {
     public DrawableObject ship;
     public DrawableObject thrust;
-    public float ShipMaxVelocity = 25;
-    public float ShipThrust = 2f;
+    public float ShipMaxVelocity = 250;
+    public float ShipThrust = 25f;
     public float ShipRoation = 90f; 
 
     public void SetupA(DrawableGrid grid, int sceneIndex)
