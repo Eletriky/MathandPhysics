@@ -36,7 +36,7 @@ public class MovingObject : DrawableObject
 
     }
 
-    public bool CheckForCollissionWith(MovingObject other)
+    public bool CheckForCollisionWith(MovingObject other)
     {
         Vector3 distanceVector = other.Position - this.Position;
         float combinedRadii = other.CollisionRadius + this.CollisionRadius;
@@ -61,8 +61,4 @@ public class MovingObject : DrawableObject
         grid.AddObjectToScene(sceneIndex, CollisionCircle);
     }
 
-    public bool CheckForCollisionWith(MovingObject other)
-    {
-        return false; 
-    }
 }

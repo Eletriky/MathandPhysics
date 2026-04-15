@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Missle : MovingObject
 {
-    public float MoveSpeed = 50f; 
+    public float MoveSpeed = 35f;
+
 
     public override void Initalize()
     {
