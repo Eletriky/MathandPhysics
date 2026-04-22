@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Rect = System.Drawing.Rectangle;
-public static class CollisionTools 
+public static class CollisionTools
 {
     public static void DrawTriangle(TriangleData data, Color color, DrawableGrid grid = null)
     {
@@ -15,7 +15,7 @@ public static class CollisionTools
             // Info is in Screen Space 
             Glint.AddCommand(lineA);
             Glint.AddCommand(lineB);
-            Glint.AddCommand(lineC); 
+            Glint.AddCommand(lineC);
         }
         else
         {
@@ -25,7 +25,7 @@ public static class CollisionTools
         }
     }
 
-    public static void SetColor(DrawableObject thing,  Color color)
+    public static void SetColor(DrawableObject thing, Color color)
     {
         for (int i = 0; i < thing.LineList.Count; i++)
         {
@@ -71,5 +71,28 @@ public static class CollisionTools
 
         return side1 && side2 && side3;
 
+    }
+
+    public static bool DoesLineIntersectCircle(Vector3 LineStart, Vector3 LineEnd, Vector3 CircleCenter, float CircleRadius)
+    {
+        // Stub Code
+        return false;
+    }
+
+    public static bool DoesLineIntersectCircle(Vector3 LineStart, Vector3 LineEnd, Vector3 CircleCenter, float CircleRadius, DrawableObject Intersect1, DrawableObject Intersect2)
+    {
+        // Stub Code
+        return false;
+    }
+
+    public static List<Vector3> IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius)
+    {
+        List<Vector3> result = new List<Vector3>();
+        return result;
+    }
+    public static bool IsInLineSegment(Vector3 point, Vector3 start, Vector3 end)
+    {
+        // Stub Code
+        return false;
     }
 }
