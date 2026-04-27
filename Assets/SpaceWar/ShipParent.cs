@@ -7,9 +7,18 @@ public class ShipParent : MovingObject
 {
     public DrawableObject ship;
     public DrawableObject thrust;
+    
     public float ShipMaxVelocity = 250;
     public float ShipThrust = 25f;
-    public float ShipRoation = 90f; 
+    public float ShipRoation = 90f;
+    public bool IsDrawingLaser = false;
+    public float MissleLaunchAt = 13f;
+
+    Line LaserObject;
+    public float LaserStart = 5f;
+    public float LaserEnd = 100f;
+    public float LaserShowTime = .5f;
+    public float LaserShowCounter = 0;
 
     public void SetupA(DrawableGrid grid, int sceneIndex)
     {
@@ -19,7 +28,10 @@ public class ShipParent : MovingObject
         thrust = new ShipAThrust();
         grid.AddObjectToScene(sceneIndex, thrust);
 
-        MaxVelocity = ShipMaxVelocity; 
+        MaxVelocity = ShipMaxVelocity;
+
+        LaserObject = new Line();
+        LaserObject.color = Color.yellow;
     }
 
     public void SetupB(DrawableGrid grid, int sceneIndex)
@@ -31,14 +43,34 @@ public class ShipParent : MovingObject
         grid.AddObjectToScene(sceneIndex, thrust);
 
         MaxVelocity = ShipMaxVelocity;
+
+        LaserObject = new Line();
+        LaserObject.color = Color.yellow;
     }
 
     public override void Tick()
     {
         base.Tick();
         UpdateSubObjects();
+        UpdateLaser();
     }
 
+    public void UpdateLaser()
+    {
+        if (!IsDrawingLaser) { return; }
+
+        LaserShowCounter -= Time.deltaTime;
+
+        if (LaserShowCounter < 0)
+        {
+            IsDrawingLaser = false;
+            return;
+        }
+
+        LaserObject.start = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), LaserStart);
+        LaserObject.end = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), LaserStart);
+        SpaceWarGrid.self.DrawLine(LaserObject);
+    }
     public void UpdateSubObjects()
     {
         ship.Position = this.Position;
@@ -71,11 +103,17 @@ public class ShipParent : MovingObject
 
     public void FireMissle(DrawableGrid grid, int sceneIndex)
     {
-
+        Missle missleObject = new Missle();
+        missleObject.Position = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), MissleLaunchAt);
+        missleObject.CreateCollision(2, grid, sceneIndex);
+        missleObject.LaunchMissle(GetRotationinDegrees());
+        grid.AddObjectToScene(sceneIndex, missleObject);
+        SpaceWarGrid.self.MovingObjectlist.Add(missleObject);
     }
 
     public void FireLaser(DrawableGrid grid, int sceneIndex)
     {
-
+        IsDrawingLaser = true;
+        LaserShowCounter = 0;
     }
 }

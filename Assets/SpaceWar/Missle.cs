@@ -36,6 +36,11 @@ public class Missle : MovingObject
             }
         }
     }
+    public void RemoveMissle()
+    {
+        SpaceWarGrid.self.RemoveMovingObject(this);
+        if (CollisionCircle != null) { SpaceWarGrid.self.RemoveMovingObject(CollisionCircle);}
+    }
 
     public void MakeMissle(float angle, Vector3 spawnPosition, Grid grid, int sceneIndex)
     {
