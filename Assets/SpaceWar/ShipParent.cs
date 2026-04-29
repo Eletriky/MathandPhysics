@@ -5,23 +5,28 @@ using UnityEngine.UIElements;
 
 public class ShipParent : MovingObject
 {
+    public bool IsShipA = true;
     public DrawableObject ship;
     public DrawableObject thrust;
     
     public float ShipMaxVelocity = 250;
     public float ShipThrust = 25f;
     public float ShipRoation = 90f;
+    
+    
     public bool IsDrawingLaser = false;
     public float MissleLaunchAt = 13f;
+    public float MissleRadius = 2;
 
     Line LaserObject;
     public float LaserStart = 5f;
-    public float LaserEnd = 100f;
+    public float LaserEnd = 200f;
     public float LaserShowTime = .5f;
     public float LaserShowCounter = 0;
 
     public void SetupA(DrawableGrid grid, int sceneIndex)
     {
+        IsShipA = true;
         ship = new ShipA();
         grid.AddObjectToScene(sceneIndex, ship);
 
@@ -36,6 +41,7 @@ public class ShipParent : MovingObject
 
     public void SetupB(DrawableGrid grid, int sceneIndex)
     {
+        IsShipA = false;
         ship = new ShipB();
         grid.AddObjectToScene(sceneIndex, ship);
 
@@ -70,6 +76,37 @@ public class ShipParent : MovingObject
         LaserObject.start = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), LaserStart);
         LaserObject.end = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), LaserStart);
         SpaceWarGrid.self.DrawLine(LaserObject);
+        LaserCollisionDetection();
+    }
+
+    public void LaserCollisionDetection()
+    {
+        foreach (MovingObject mo in SpaceWarGrid.self.MovingObjectlist)
+        {
+            if (mo == this)
+            {
+                Debug.Log("Skipping ourselves");
+            }
+
+            if (CollisionTools.DoesLineIntersectCircle(LaserObject.start, LaserObject.end, mo.CollisionCircle.Position, mo.CollisionRadius))
+            {
+                Debug.Log("Found Hit with " + mo.ToString());
+                if (mo is ShipParent)
+                {
+                    if (((ShipParent)mo).IsShipA != this.IsShipA)
+                    {
+                        SpaceWarGrid.self.RecordKill(IsShipA);
+                    }
+                    
+                }
+                if (mo is Missle)
+                {
+                    Missle missle = (Missle)mo;
+                    missle.RemoveMissle();
+                }
+            }
+
+        }
     }
     public void UpdateSubObjects()
     {
@@ -105,7 +142,7 @@ public class ShipParent : MovingObject
     {
         Missle missleObject = new Missle();
         missleObject.Position = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), MissleLaunchAt);
-        missleObject.CreateCollision(2, grid, sceneIndex);
+        missleObject.CreateCollision(MissleRadius, grid, sceneIndex);
         missleObject.LaunchMissle(GetRotationinDegrees());
         grid.AddObjectToScene(sceneIndex, missleObject);
         SpaceWarGrid.self.MovingObjectlist.Add(missleObject);
