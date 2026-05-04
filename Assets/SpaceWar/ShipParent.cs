@@ -1,7 +1,6 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class ShipParent : MovingObject
 {
@@ -74,7 +73,7 @@ public class ShipParent : MovingObject
         }
 
         LaserObject.start = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), LaserStart);
-        LaserObject.end = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), LaserStart);
+        LaserObject.end = this.Position + DrawingTools.CircleRadiusPoint(Vector3.zero, GetRotationinDegrees(), LaserEnd);
         SpaceWarGrid.self.DrawLine(LaserObject);
         LaserCollisionDetection();
     }
@@ -151,6 +150,7 @@ public class ShipParent : MovingObject
     public void FireLaser(DrawableGrid grid, int sceneIndex)
     {
         IsDrawingLaser = true;
-        LaserShowCounter = 0;
+        LaserShowCounter = LaserShowTime;
+        
     }
 }
